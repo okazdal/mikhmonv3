@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+
+  web:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./mikhmon:/var/www/myapp
+      - ./site.conf:/etc/nginx/conf.d/site.conf
+    depends_on:
+      - php
+
+  php:
+    image: php:7.2-fpm
+    volumes:
+      - ./mikhmon:/var/www/myapp
+      # - ./php.ini:/usr/local/etc/php/php.ini
